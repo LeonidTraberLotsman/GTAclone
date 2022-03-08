@@ -11,10 +11,22 @@ public class PlayerBodyMove : MonoBehaviour
     public GameObject Aim;  
     public GameObject RestartButton;  
     public float HP=100;
-   
+    public PlayerMove playerMove;
+    public Canvas canvas;
     
     Rigidbody body;
     public bool Alive = true;
+    public bool freedom=true;
+
+
+
+    public void SetFreedom(bool state){
+        freedom=playerMove.freedom=state;
+        body.isKinematic=!state;
+        body.velocity = body.angularVelocity=new Vector3();
+        canvas.gameObject.SetActive(state);
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +50,7 @@ public void Die()
     // Update is called once per frame
     void Update()
     {
-        if(Alive)
+        if(Alive&&freedom)
         {
         if (Input.GetKey(KeyCode.W))
         {

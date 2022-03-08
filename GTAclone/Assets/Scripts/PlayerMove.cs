@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
     public Transform PlayerBody;
+    public PlayerBodyMove playerBodyMove;
     float MouseSensivity = 10;
     float xRotation = 0;
     public AudioSource source;
     public AudioClip[] sounds;
     public int Ammo;
     public Text AmmoCount;
+    public Text InterText;
+    public bool freedom=true;
 
     // gg
     void Start()
@@ -24,6 +27,7 @@ public class PlayerMove : MonoBehaviour
     // chto zdes proishodit
     void Update()
     {
+        if(freedom){
         float mouseX = Input.GetAxis("Mouse X")*MouseSensivity; 
         float mouseY = Input.GetAxis("Mouse Y") * MouseSensivity; 
 
@@ -36,6 +40,19 @@ public class PlayerMove : MonoBehaviour
         {
             
             Debug.Log(hit.transform.name);
+            InterText.text=" ";
+            if(hit.transform.gameObject.GetComponent<Interactable>()){
+                Interactable One= hit.transform.gameObject.GetComponent<Interactable>();
+                if(Vector3.Distance(hit.point, transform.position)< One.IntDistance){
+                    InterText.text="press E to interact with "+One.naming;
+                    if(Input.GetKeyDown(KeyCode.E)){
+                        One.Interact(this);
+                    }
+                }
+            }
+
+
+
             if ((Input.GetKeyDown(KeyCode.Mouse0))&&(Ammo>0))
             {
                 Ammo=Ammo-1;
@@ -49,6 +66,7 @@ public class PlayerMove : MonoBehaviour
                     hit.transform.gameObject.GetComponent<Enemy>().damage();
                 }
             }
+        }
         }
 
     }
