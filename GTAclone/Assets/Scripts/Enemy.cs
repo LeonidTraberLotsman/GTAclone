@@ -19,7 +19,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    if(a>0)
+    
+
+    }
+    IEnumerator MeleeRage(){
+        if(a>0)
         {
             agent.destination=player.position;
             if(Vector3.Distance(player.position,transform.position)<1)
@@ -27,8 +31,8 @@ public class Enemy : MonoBehaviour
     
             player.gameObject.GetComponent<PlayerBodyMove>().GetDamage(5f);
             }        
-        }   
-
+        }
+        yield return null;   
     }
     
     public void Die()

@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
                 Interactable One= hit.transform.gameObject.GetComponent<Interactable>();
                 if(Vector3.Distance(hit.point, transform.position)< One.IntDistance){
                     InterText.text="press E to interact with "+One.naming;
-                    if(Input.GetKeyDown(KeyCode.E)){
+                    if(Input.GetKeyUp(KeyCode.E)){
                         One.Interact(this);
                     }
                 }

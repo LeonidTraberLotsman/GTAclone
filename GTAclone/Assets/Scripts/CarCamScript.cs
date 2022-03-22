@@ -6,6 +6,9 @@ public class CarCamScript : MonoBehaviour
 {
     float MouseSensivity = 10;
     float xRotation = 0;
+    float yRotation = 0;
+    public Transform CamTrans;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +22,10 @@ public class CarCamScript : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * MouseSensivity; 
 
         xRotation = xRotation - mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(0, xRotation, 0);
-        //transform.Rotate(Vector3.up * mouseX);
+        yRotation = yRotation - mouseX;
+
+        // = Mathf.Clamp(xRotation, -90f, 90f);
+        transform.localRotation = Quaternion.Euler(0,yRotation , 0);
+        CamTrans.Rotate(Vector3.right * mouseY);
     }
 }
