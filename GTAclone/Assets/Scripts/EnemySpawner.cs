@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner: MonoBehaviour
 {
     public GameObject prefab;
     public Transform player;
+    public manager manager1;
+    public int x=8;
 
     // Start is called before the first frame update
     void Start()
@@ -15,22 +17,21 @@ public class EnemySpawner : MonoBehaviour
 
 
     public IEnumerator Spawn()
+    {
+        while(x>0)
         {
-            while(true)
-            {
-                GameObject Clone = Instantiate(prefab);
-                Clone.transform.position = transform.position;
-                Clone.GetComponent<Enemy>().player = player;
-
-                yield return new WaitForSeconds(6);
-            }
-
+            x--;
+            GameObject Clone = Instantiate(prefab);
+            Clone.transform.position = transform.position;
+            Enemy enem = Clone.GetComponent<Enemy>();
+            enem.player = player;
+            enem.manager1 = manager1;
+            manager1.enemies.Add(enem);
+            yield return new WaitForSeconds(1);
         }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
+
+
+   
 }

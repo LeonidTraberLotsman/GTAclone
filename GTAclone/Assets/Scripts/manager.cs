@@ -23,7 +23,7 @@ public class manager : MonoBehaviour
         float minDist=10000;
         if(potentials.Count<1) {
             Corner One = null;
-            
+            Debug.Log("No normal corners");
             foreach(Corner that in corners){
             float ThatDist =Vector3.Distance(that.transform.position,enemyPoint);
             if(ThatDist<minDist){
@@ -42,6 +42,7 @@ public class manager : MonoBehaviour
                 closeOne=that;
             }
         }
+        Debug.Log(closeOne.transform.name);
         return closeOne;
     }
     // Update is called once per frame

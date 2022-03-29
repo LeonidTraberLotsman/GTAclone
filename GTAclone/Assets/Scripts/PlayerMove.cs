@@ -39,7 +39,7 @@ public class PlayerMove : MonoBehaviour
         if(Physics.Raycast(transform.position, transform.forward, out hit))
         {
             
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
             InterText.text=" ";
             if(hit.transform.gameObject.GetComponent<Interactable>()){
                 Interactable One= hit.transform.gameObject.GetComponent<Interactable>();

@@ -14,9 +14,11 @@ public class Corner : MonoBehaviour
         Vector3 Direction = PlayerPoint.position-transform.position;
         if(Physics.Raycast(transform.position, Direction, out hit, 200)){
             if(hit.transform!=PlayerPoint){
+                Debug.Log(transform.name +" is Good");
                 return true;
             }
         }
+        Debug.Log(transform.name +" is bad");
         return false;
 
     }
